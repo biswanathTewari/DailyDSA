@@ -14,7 +14,7 @@ int rodCutting(int a[],int l,int n){
 
       //if there no sizes to cut
       if(i == 0)
-        dp[i][j] = INT_MIN;
+        dp[i][j] = INT_MIN;//filling with infinity if the remaining uncutted portion cannot be cutted by other elements of array
     }
   }
 
@@ -33,6 +33,8 @@ int rodCutting(int a[],int l,int n){
 
     }
   }
+
+
 
 
   return dp[l][n];

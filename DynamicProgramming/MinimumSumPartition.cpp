@@ -17,39 +17,46 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
 typedef pair<ll, pair<ll, ll>> xecs;
 
-
-ll subsetSum(ll a[],ll n,ll sum){
+vector<ll> subsetSum(ll a[],ll n,ll sum){
 
   ll dp[n+1][sum+1];
 
-  memset(dp,0,sizeof(dp));
+  memset(dp,-1,sizeof(dp));
 
   //base case
-  fr(i,n+1)
+  fr(i,n+1){
     fr(j,sum+1){
-      //if there are elements
-      if(i == 0)
-        dp[i][j] = 0;
+      if(i == 0)//if no elements
+        dp[i][j] = false;
 
-      //if the sum is 0
-      if(j == 0)
-          dp[i][j] = 1;
+      if(j == 0)//if sum = 0
+        dp[i][j] = true;
     }
+  }
 
   //choice program
   fr1(i,1,n+1,1){
     fr1(j,1,sum+1,1){
 
-    if(a[i-1] > j){
-      dp[i][j] = dp[i-1][j];
-    }
-    else {dp[i][j] = dp[i-1][j-a[i-1]] + dp[i-1][j] ;}
+      //we dont take it
+      if(a[i-1] > j)
+        dp[i][j] = dp[i-1][j];
+
+      //either we take it or we dont take it
+      if(a[i-1] <= j)
+        dp[i][j] = dp[i-1][j-a[i-1]] || dp[i-1][j];
 
     }
   }
 
+  vector<ll> v;
 
-  return dp[n][sum];
+  for(int i=0;i<sum+1;i++)
+    if(dp[n][i] == true)
+      v.pb(i);
+
+  return v;
+
 }
 
 
@@ -58,18 +65,24 @@ int main(){
   ll t;
   cin>>t;
   while(t--){
-    ll n,sum;
-    cin>>n;
 
+    ll n;
+    cin>>n;
     ll a[n];
 
+    ll sumation = 0,mn=INT_MAX;
     fr(i,n){
       cin>>a[i];
+      sumation+=a[i];
     }
 
-    cin>>sum;
+    vector<ll> v = subsetSum(a,n,sumation);
 
-    cout<<subsetSum(a,n,sum)<<endl;
+    for(auto i:v){
+      mn = min(mn,sumation - (2*i));
+    }
+
+    cout<<mn<<endl;
 
   }
   return 0;

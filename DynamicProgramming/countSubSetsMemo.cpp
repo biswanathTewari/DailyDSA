@@ -17,36 +17,29 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
 typedef pair<ll, pair<ll, ll>> xecs;
 
+ll dp[1003][1003];
+ll vis[1003][1003];
+
 
 ll subsetSum(ll a[],ll n,ll sum){
 
-  ll dp[n+1][sum+1];
-
-  memset(dp,0,sizeof(dp));
-
   //base case
-  fr(i,n+1)
-    fr(j,sum+1){
-      //if there are elements
-      if(i == 0)
-        dp[i][j] = 0;
+  if(sum == 0)
+    return 1;
 
-      //if the sum is 0
-      if(j == 0)
-          dp[i][j] = 1;
-    }
+  if(n == 0)
+    return 0;
+
+  if(vis[n][sum] == 1)
+    return dp[n][sum];
+
 
   //choice program
-  fr1(i,1,n+1,1){
-    fr1(j,1,sum+1,1){
 
-    if(a[i-1] > j){
-      dp[i][j] = dp[i-1][j];
-    }
-    else {dp[i][j] = dp[i-1][j-a[i-1]] + dp[i-1][j] ;}
-
-    }
+  if(a[n-1] > sum){
+    dp[n][sum] = subsetSum(a,n-1,sum);
   }
+  else dp[n][sum] = dp[n-1][sum-a[n-1]] + dp[n-1][sum];
 
 
   return dp[n][sum];
@@ -62,6 +55,9 @@ int main(){
     cin>>n;
 
     ll a[n];
+
+    memset(dp,0,sizeof(dp));
+    memset(vis,0,sizeof(vis));
 
     fr(i,n){
       cin>>a[i];

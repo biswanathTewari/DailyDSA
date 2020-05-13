@@ -1,3 +1,4 @@
+/*variation of longest common subsequence problem*/
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -39,7 +40,7 @@ int LPS(string a,string b){
 int main(){
   int t;
   cin>>t;
-  
+
   while(t--){
     string a,b;
 

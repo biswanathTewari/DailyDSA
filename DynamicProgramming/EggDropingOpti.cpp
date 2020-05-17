@@ -11,7 +11,7 @@ int ED(int e,int f){
     return dp[e][f];
 
   //baseCase
-  if(e == 1)//we need to check each floor from bottom to up
+  if(e == 1)//if only one egg then for the worst case(atleast), we need to check each floor from bottom to up
     return dp[e][f] = f;
 
   if(f == 0 || f == 1)

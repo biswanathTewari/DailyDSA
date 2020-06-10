@@ -51,7 +51,7 @@ void bfs(){
 
       if(isSafe(nx,ny) && des[nx][ny] > des[p.first][p.second] + 1){
         des[nx][ny] = des[p.first][p.second] + 1;
-        q.push(make_pair(nx,ny));
+        q.push(make_pair(nx,ny)); //pushing the new minimum
         vis[nx][ny] = 1;
       }
     }

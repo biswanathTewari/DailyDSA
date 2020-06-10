@@ -14,7 +14,7 @@ int dx[] = {0,0,1,-1};
 int dy[] = {1,-1,0,0};
 
 bool isSafe(int nx , int ny){
-  if(nx >= 0 && nx < n && ny >= 0 && ny < m  && a[nx][ny] == 1)//if a valid vertex & not visited & passabel = 1;
+  if(nx >= 0 && nx < n && ny >= 0 && ny < m && vis[nx][ny] == 0 && a[nx][ny] == 1)//if a valid vertex & not visited & passabel = 1;
     return true;
   return false;
 }
@@ -49,7 +49,7 @@ void bfs(){
       int nx = p.first + dx[i];
       int ny = p.second + dy[i];
 
-      if(isSafe(nx,ny) && vis[nx][ny] == 0 && des[nx][ny] > des[p.first][p.second] + 1){
+      if(isSafe(nx,ny) && des[nx][ny] > des[p.first][p.second] + 1){
         des[nx][ny] = des[p.first][p.second] + 1;
         q.push(make_pair(nx,ny));
         vis[nx][ny] = 1;

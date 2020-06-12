@@ -7,7 +7,7 @@ int BFS(vector<int> adj[31]){
   int dis[31];
 
   fill(vis,vis+31,0);
-  fill(dis,dis+31,0);
+  fill(dis,dis+31,INT_MAX);
 
   queue<int> q;
 
@@ -21,7 +21,7 @@ int BFS(vector<int> adj[31]){
 
     for(int i=0;i<adj[x].size();i++){
 
-      if(vis[adj[x][i]] == 0){
+      if(vis[adj[x][i]] == 0 && dis[adj[x][i]] > dis[x] + 1){
         vis[adj[x][i]] = 1;
         dis[adj[x][i]] = dis[x] + 1;
         q.push(adj[x][i]);
@@ -35,7 +35,7 @@ int BFS(vector<int> adj[31]){
   }
 
 
-  return dis[30];
+  return 0;
 
 }
 

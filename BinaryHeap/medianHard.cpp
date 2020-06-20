@@ -18,38 +18,58 @@ using namespace std;
 typedef pair<ll, pair<ll, ll>> xecs;
 
 
-void bizan(ll a[],ll n){
-  priority_queue<ll> small;
-  priority_queue<ll,vector<ll>,greater<ll>> large;
+void median(ll a[],ll n){
+
+  priority_queue<ll> small; //contains the small elements or the first half : max_heap
+  priority_queue<ll,vector<ll>,greater<ll>> large; //conatins the larger elements or the second half : min_heap
 
   ll prev = a[0];
   small.push(a[0]);
+
   cout<<prev<<endl;
 
-  fr1(i,1,n,1){
+  for(int i=1;i<n;i++){
+
+    // case1(left side heap has more elements)
     if(small.size() > large.size()){
+
       if(a[i]<prev){
+
         large.push(small.top());
         small.pop();
         small.push(a[i]);
+
       }
       else large.push(a[i]);
-      prev = floor((small.top()+large.top())/2);
+
+      prev = floor((small.top()+large.top())/2); //even so median = average of the middle two elements
     }
+
+
+    // case2(both heaps are balanced)
     else if(small.size() == large.size()) {
+
       if(a[i] < prev)
         small.push(a[i]);
       else large.push(a[i]);
-      prev = (small.size() > large.size())? small.top() : large.top();
+
+      prev = (small.size() > large.size())? small.top() : large.top(); //odd so the middle element
     }
+
+
+    // case3(right side heap has more elements)
     else {
+
       if(a[i] > prev){
+
         small.push(large.top());
         large.pop();
         large.push(a[i]);
+
       }
       else small.push(a[i]);
-      prev = floor((small.top()+large.top())/2);
+
+      prev = floor((small.top()+large.top())/2); //even so median = average of the middle two elements
     }
 
     cout<<prev<<endl;
@@ -58,42 +78,68 @@ void bizan(ll a[],ll n){
 
 
 int main(){
+
   fast;
+
   ll n;
   cin>>n;
   ll a[n];
+
   fr(i,n)
     cin>>a[i];
-  bizan(a,n);
+
+  median(a,n);
+
   return 0;
 }
 
 
-/*fr(i,n){
-    //1 add
-    if(large.empty() || a[i]<large.top())
+/* SECOND METHOD-----------------------------------------------------------------------------------------------------------------
+
+void median(int a[],int n){
+
+  priority_queue<int> small; //contains the small elements or the first half : max_heap
+  priority_queue<int,vector<int>,greater<int>> large; //conatins the larger elements or the second half : min_heap
+
+  int mid = a[0];
+  small.push(mid);
+  cout<<mid<<endl;
+
+  for(int i=1;i<n;i++){
+
+    // 1 -> adding elements
+    if(large.empty() || a[i] > large.top()) //element a[i] is greater than the smallest element of the 'large' priority_queue
       large.push(a[i]);
     else small.push(a[i]);
 
-    //2 balance
-    ll s = small.size();
-    ll l = large.size();
-    if(abs(l-s)>1)
-      if(s>l){
-        large.push(small.top());
-        small.pop();
-        s--;
-        l++;
-      }
-      else{
-        small.push(large.top());
+    int l = large.size();
+    int s = small.size();
+
+    //2 -> maintaing the balance
+    if(abs(s - l) > 1){
+      if(l > s){
+        small.push(large.top()); //sending the smallest element of the large to small
         large.pop();
         l--;
         s++;
       }
+      else{
+        large.push(small.top()); //sending the largest element of the small to large
+        small.pop();
+        s--;
+        l++;
+      }
+    }
 
-    //3 median
-    if(s == l)
-      b[i] = floor((small.top()+large.top())/2);
-    else b[i] = (s>l)? small.top() : large.top();
-}*/
+    //finding the current median
+    if(s == l) //if even , both sides are equal
+      mid = floor((small.top() + large.top()) / 2 ); //average of the middle two elements
+    else mid = (s > l)? small.top() : large.top(); //middle single element in the case of odd
+
+    cout<<mid<<endl;
+
+  }
+
+}
+
+*/

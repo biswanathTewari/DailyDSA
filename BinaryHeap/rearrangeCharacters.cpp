@@ -1,53 +1,72 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
 struct key{
+
   int freq;
   char ch;
 
-  bool operator<(const key &k) const{
+  bool operator<(const key &k) const { //works as a comparator
     return freq < k.freq;
   }
+
 };
 
-int bizan(string s){
-  priority_queue<key> pq;
-  int n = s.length();
-  int count[26];
+
+int rearrange(string s){
+
+  priority_queue<key> pq; //max heap for storing the chars
+
+  int count[26]; //to count the chars
   fill(count,count+26,0);
+
+  int n = s.length();
+
   for(int i=0;i<n;i++)
     count[s[i]-'a']++;
-  for(char i='a';i<='z';i++)
-    if(count[i-'a'])
-      pq.push(key {count[i-'a'],i});
-  key prev;
-  prev.freq=-1;
-  prev.ch='#';
-  string str="";
+
+  for(char i = 'a'; i<='z'; i++)
+    if(count[i - 'a'])
+      pq.push(key {count[i - 'a'],i});
+
+  string ns = ""; //new string
+
+  key prev {-1,'#'}; //to break the continous printing of the max freq chars
+
   while(!pq.empty()){
+
     key a = pq.top();
     pq.pop();
-    str+=a.ch;
 
-    if(prev.freq>0)
+    ns += a.ch;
+
+    if(prev.freq > 0)
       pq.push(prev);
 
-    (a.freq)--;
+    a.freq--;
     prev = a;
+
   }
-  if(n == str.length())
+
+  if(ns.length() == n)
     return 1;
-  return 0;
+  else return 0;
+
 }
 
 
 int main(){
   int t;
   cin>>t;
+
   while(t--){
+
     string s;
     cin>>s;
-    cout<<bizan(s)<<endl;
+    cout<<rearrange(s)<<endl;
+
   }
+
   return 0;
 }

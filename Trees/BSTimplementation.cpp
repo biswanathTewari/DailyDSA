@@ -10,6 +10,7 @@ struct node{
   node* left;
 };
 
+
 node* createNode(int value){
   node* temp=new node;
   temp->value=value;

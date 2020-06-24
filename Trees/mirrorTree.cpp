@@ -97,7 +97,6 @@ int main()
   return 0;
 }
 // } Driver Code Ends
-/*
 
 
 // complete this function
@@ -112,7 +111,7 @@ bool isMirror(struct Node *root1, struct Node *root2)
     //if both are not null
     if (root1 && root2 )
         return (root1->data == root2->data) && isMirror(root1->left, root2->right) &&
-               isMirror(root1->right, root2->left); 
+               isMirror(root1->right, root2->left);
 
 
     //one of them is not null

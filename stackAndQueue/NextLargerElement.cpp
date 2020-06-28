@@ -21,13 +21,18 @@ void nextlarger(ll a[],ll n){
   stack<ll> s;
   ll b[n];
 
+  //array to store the next larger element for each position
   fill(b,b+n,-1);
 
-  s.push(0);
-  frn(i,n-1){
+
+  fr(i,n){
+
+      //only smaller elements gets entry to the stack
       if(s.empty() || a[i]<a[s.top()])
         s.push(i);
+
       else{
+          //all the elements in the stack gets a[i] as there next larger element
           while(!s.empty() && a[i]>a[s.top()]){
             ll x = s.top();
             s.pop();

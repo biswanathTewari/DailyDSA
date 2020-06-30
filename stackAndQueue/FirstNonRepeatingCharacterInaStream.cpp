@@ -1,58 +1,66 @@
-//biZanXsolutions
 #include<bits/stdc++.h>
 using namespace std;
-#define N 200005
-#define MOD 1000000007
-#define ll long long int
-#define ld long double
-#define sl unsigned long long int
-#define stir string
-#define vll vector<ll>
-#define pb push_back
-#define fr(i,n) for(ll (i) = 0; (i) <(n) ; (i)=(i+1))
-#define frn(i,n) for(ll (i) = 1; (i) <=(n) ; (i)=(i+1))
-#define frev(i,n) for(ll (i) = n-1; (i) >=(0) ; (i)--)
-#define fr1(j,a,b,c) for(ll (j) = a; (j) <b ; (j)=(j+c))
-#define bw(t) while(t--)
-#define fast ios::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
-typedef pair<ll, pair<ll, ll>> xecs;
 
-void bizan(char ch[],ll n){
-  list<char> l;
-  ll a[26];
-  list<char> ::iterator b[26];
-  fill(a,a+26,0);
-  fr(i,n){
-    ll x = ch[i]-97;
-    if(a[x]==0){
+
+void nonrepeat(char ch[],int n){
+
+  int freq[26]; //stores the frequncy of the chars
+  fill(freq,freq+26,0);
+
+  list<char> l; //since queue does not supports erase() , using list as its alternative
+  list<char> :: iterator b[26]; //to store the position of the chars in the queue
+
+  for(int i=0;i<n;i++){
+
+    int x = ch[i] - 97;
+
+    //if unique element
+    if(freq[x] == 0){
+
+      freq[x]++;
       l.push_back(ch[i]);
-      a[x]++;
       b[x] = l.end();
-      b[x]--;
+      b[x]--; //stores the iterator position to char ch[i] in the list
+
     }
-    else if(a[x] == 1){
+
+    //if duplicate char
+    else if(freq[x] == 1){
+
       l.erase(b[x]);
-      a[x]++;
+      freq[x]++;
+
     }
+
+    //else if the freq is greater than 1 do nothing , its duplicate which does not exists in the list anymore
+
     if(l.empty())
-      cout<<"-1"<<" ";
+      cout<<-1<<" ";
     else cout<<l.front()<<" ";
+
   }
+
 }
 
 
-
 int main(){
-  ll t;
+
+  int t;
   cin>>t;
+
   while(t--){
-    ll n;
+
+    int n;
     cin>>n;
+
     char ch[n];
-    fr(i,n)
+
+    for(int i=0;i<n;i++)
       cin>>ch[i];
-    bizan(ch,n);
+
+    nonrepeat(ch,n);
     cout<<endl;
+
   }
-  return 0;
+
 }

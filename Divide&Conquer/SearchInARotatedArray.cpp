@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int search(int a[],int n,int k,int x){ // time : O(N) , space : O(1)
+int search(int a[],int n,int k,int x){ // time : O(log N) , space : O(1)
 
   int res1 = lower_bound(a,a+x,k) - a; //first of the half
   int res2 = lower_bound(a+x,a+n,k) - a; //point after which the array is rotated

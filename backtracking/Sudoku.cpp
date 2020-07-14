@@ -1,3 +1,5 @@
+/*variation of N Queens problem , NP-complete problem.. Time : exponential O(9^(n*n)) , space : O(n*n)*/
+
 #include<bits/stdc++.h>
 using namespace std;
 

@@ -10,6 +10,7 @@ string terminator(string s){ //eliminates the adjacent duplicates
 
     if(s[i] != s[i+1]){ //if the current char does not match with the next char
       r += s[i];
+      i++;//increment to next
     }
 
     if(s[i] && s[i] == s[i+1]){ //if the current char is not a null and it matches with the next char
@@ -17,24 +18,22 @@ string terminator(string s){ //eliminates the adjacent duplicates
       while(s[i] == s[i+1]) //bypassing the adjacent duplicates
         i++;
 
+      i++;//increment to next
     }
-
-    i++;//increment to next
-
   }
 
   int f = 0;
 
-  for(i=0;i<r.length()-1;i++)
+  for(i=0;i+1<r.length();i++)
     if(r[i] == r[i+1]){
       f = 1;
       break;
     }
 
   if(f) //if still adjacent dupliactes exists
-    return terminator(r);
-  else return r;
+    r = terminator(r);
 
+  return r;
 }
 
 

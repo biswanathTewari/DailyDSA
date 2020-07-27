@@ -27,7 +27,7 @@ int main()
 *  arr[]: input array
 *  n: size of array
 */
-bool findTriplets(int nums[], int n) /*variation of two pointers : time: O(N) , space : O(1)*/
+bool findTriplets(int nums[], int n) /*variation of two pointers : time: O(N^2) , space : O(1)*/
 {
         sort(nums,nums+n);
 

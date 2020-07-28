@@ -3,7 +3,7 @@ using namespace std;
 
 #define ll long long int
 
-void sorted(ll a[],ll n){ //time : O(log N) : space : O(1)
+void sorted(ll a[],ll n){ //time : O(N) : space : O(1)
 
   ll high = n-1;
   ll low = 0;
@@ -16,7 +16,7 @@ void sorted(ll a[],ll n){ //time : O(log N) : space : O(1)
 
     else if(a[mid] == 1) //simply ignore
       mid++;
-      
+
     else swap(a[mid],a[high--]); //next check will start from current mid only, due to the swap from high
 
   }

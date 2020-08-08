@@ -6,31 +6,21 @@ using namespace std;
 
 void MissingAndRepeating(ll a[],ll n){ //time : O(N), space : O(1)
 
-  ll counter = 0;
-  ll B,A = 0;
 
-  for(ll i=0;i<n;i++){
+  ll missing , repeating;
 
-    if((counter & (1 << a[i])) != 0)
-      B = a[i];
+  for(ll i=0;i<n;i++)
+    if(a[abs(a[i])-1] > 0) //using indexing with the same array , instead of 0 & 1 , using -ve & +ve to signify visited or not
+      a[abs(a[i])-1] *= -1;
+    else repeating = abs(a[i]);
 
-    counter = counter | (1 << a[i]);
-    //cout<<counter<<endl;
-
-  }
-
-  counter/=10;
-
-  for(ll i = counter;i>0;i/=10){
-
-    A++;
-
-    if(i%10 == 0)
+  for(ll i=0;i<n;i++)
+    if(a[i] > 0){ //the only +ve element is the missing element
+      missing = i+1;
       break;
+    }
 
-  }
-
-  cout<<B<<" "<<A<<endl;
+  cout<<repeating<<" "<<missing<<endl;
 
 }
 

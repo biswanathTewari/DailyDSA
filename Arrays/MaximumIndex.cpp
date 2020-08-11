@@ -26,7 +26,7 @@ int main(){
     for(int i=0;i<n;i++){
       for(int j=n-1;j>i;j--){
 
-        if(a[i]<=a[j]){
+        if(a[i]<=a[j]){ //if condition satisfies , no need to look further left
           res = max(res,j-i);
           break;
         }

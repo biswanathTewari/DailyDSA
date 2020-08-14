@@ -6,4 +6,4 @@
 
 > ### *Sorry for the inconvenience caused for the mean while.*
 
-# DailyDSA -by *Biswanath Tewari*
+## DailyDSA -by *Biswanath Tewari*

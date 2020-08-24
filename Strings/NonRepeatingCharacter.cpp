@@ -6,6 +6,8 @@ DailyDSA: biZan7X
 #include<bits/stdc++.h>
 using namespace std;
 
+/*NOTE : alternate approach can be done using deque*/
+
 int main(){
 
   int t;
@@ -20,13 +22,13 @@ int main(){
 
     for(int i=0;i<n;i++){
       cin>>s[i];
-      a[s[i]-'a']++;
+      a[s[i]-'a']++; //counting the frequency
     }
 
     char ch = '#';
 
     for(int i=0;i<n;i++)
-      if(a[s[i]-'a'] == 1){
+      if(a[s[i]-'a'] == 1){ //if the frequency is 1 i.e., it oocured only once
         ch = s[i];
         break;
       }

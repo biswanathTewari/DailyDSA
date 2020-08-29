@@ -17,7 +17,7 @@ using namespace std;
 #define fast ios::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
 
 
-/*Link : */
+/*Link : https://www.codechef.com/LTIME87B/problems/MODEFREQ */
 
 int main(){
   fast;

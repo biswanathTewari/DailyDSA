@@ -31,6 +31,12 @@ class minHeap{
 
     void deleteKey(int i);
 
+    void display(){
+      for(int i=0;i<hsize;i++)
+        cout<<ha[i]<<" ";
+        cout<<endl;
+    }
+
 };
 
 void minHeap :: insertKey(int k){
@@ -104,6 +110,7 @@ int main(){
   h.insertKey(5);
   h.insertKey(4);
   h.insertKey(45);
+  h.display();
 
   cout<<h.extractMin()<<endl;
   cout<<h.getMin()<<endl;
